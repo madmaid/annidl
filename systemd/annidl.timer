@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily Timer for ANN-i Donwloader
+
+[Timer]
+OnCalendar=Mon,Tue,Wed,Thu,Fri,Sat *-*-* 10:00:00
+Unit=annidl.service
+
+[Install]
+WantedBy=timers.target
