@@ -45,7 +45,7 @@ if $PROGRAM_NAME == __FILE__
     recorded_dir = File.expand_path(ARGV[0])
     filename = Shellwords.escape(File.join(recorded_dir, title.to_s))
 
-    result = { title: false }
+    result = { title => false }
     video_source = program&.css('video source')
     next result if video_source.nil? || video_source.empty?
 
@@ -60,7 +60,7 @@ if $PROGRAM_NAME == __FILE__
 
   end.compact
 
-  open(File.expand_path(LOG_PATH), 'a+') do |io|
+  File.open(File.expand_path(LOG_PATH), 'w+') do |io|
     JSON.dump({ programs: log['programs'] + results }, io)
   end
 
