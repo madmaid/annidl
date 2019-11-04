@@ -55,7 +55,7 @@ if $PROGRAM_NAME == __FILE__
     cmd = "ffmpeg -i #{movie_url} -vcodec copy -acodec copy -bsf:a aac_adtstoasc #{filename}.mp4"
     output = `#{cmd}`
 
-    result.update(title: true)
+    result.update(title => true)
     result
 
   end.compact
