@@ -61,7 +61,7 @@ if $PROGRAM_NAME == __FILE__
   end.compact
 
   File.open(File.expand_path(LOG_PATH), 'w+') do |io|
-    JSON.dump({ programs: log['programs'] + results }, io)
+    JSON.dump({ programs: log['programs'] + {}.merge(*results) }, io)
   end
 
 end
