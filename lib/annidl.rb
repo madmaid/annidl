@@ -17,7 +17,7 @@ def init_log
 
   unless File.exist?(LOG_PATH)
     File.open(LOG_PATH, 'w') do |io|
-      JSON.dump({ programs: [] }, io)
+      JSON.dump({ programs: {} }, io)
     end
   end
 
