@@ -39,11 +39,15 @@ if $PROGRAM_NAME == __FILE__
 
     title = program.css('#program_area .ttl_movie')[0].xpath('text()')
 
-    next unless log['programs'] == [] || log['programs'].fetch(title, false)
-
-
     recorded_dir = File.expand_path(ARGV[0])
     filename = Shellwords.escape(File.join(recorded_dir, title.to_s))
+
+    log_is_empty = log['programs'] == []
+    program_is_downloaded = log['programs'].fetch(title, false)
+    file_exists = File.exist?(filename)
+
+    next unless log_is_empty || program_is_downloaded || file_exists
+
 
     result = { title => false }
     video_source = program&.css('video source')
