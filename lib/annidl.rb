@@ -42,12 +42,9 @@ if $PROGRAM_NAME == __FILE__
     recorded_dir = File.expand_path(ARGV[0])
     filename = Shellwords.escape(File.join(recorded_dir, title.to_s))
 
-    log_is_empty = log['programs'] == []
-    program_is_downloaded = log['programs'].fetch(title, false)
-    file_exists = File.exist?(filename)
-
-    next unless log_is_empty || program_is_downloaded || file_exists
-
+    next unless  log['programs'] == []\
+              || log['programs'].fetch(title, false)\
+              || File.exist?(filename)
 
     result = { title => false }
     video_source = program&.css('video source')
