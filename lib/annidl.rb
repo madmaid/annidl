@@ -39,7 +39,7 @@ if $PROGRAM_NAME == __FILE__
 
     title = program.css('#program_area .ttl_movie')[0].xpath('text()')
 
-    next unless log['programs'] == [] || log['programs'].get(title)
+    next unless log['programs'] == [] || log['programs'].fetch(title)
 
 
     recorded_dir = File.expand_path(ARGV[0])
