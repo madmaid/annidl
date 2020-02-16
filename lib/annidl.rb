@@ -28,14 +28,14 @@ if $PROGRAM_NAME == __FILE__
 
   log = File.open(LOG_PATH, 'r') { |io| JSON.load(io) }
 
-  root = Nokogiri::HTML(open(PROGRAMS_URL, 'User-Agent' => UA))
+  root = Nokogiri::HTML(URI.open(PROGRAMS_URL, 'User-Agent' => UA))
   programs = root.css('#container .inner li .search_txt a').map do |elem|
     elem[:href]
   end
 
   results = programs.map do |program_url|
     sanitized_url = URI.join(URL_ROOT, program_url)
-    program = Nokogiri::HTML(open(sanitized_url.to_s, 'User-Agent' => UA))
+    program = Nokogiri::HTML(URI.open(sanitized_url.to_s, 'User-Agent' => UA))
 
     title = program.css('#program_area .ttl_movie')[0].xpath('text()')
 
