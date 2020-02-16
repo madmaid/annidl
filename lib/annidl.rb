@@ -7,8 +7,8 @@ require 'json'
 URL_ROOT = 'https://i.allnightnippon.com/'
 PROGRAMS_URL = URI.join(URL_ROOT, 'newlist')
 LOG_DIR = File.expand_path('~/.log/anni/')
-LOG_FILENAME = 'log.json'
-LOG_PATH = File.join(LOG_DIR, LOG_FILENAME)
+RECORDED_LOG_FILENAME = 'recorded.json'
+LOG_PATH = File.join(LOG_DIR, RECORDED_LOG_FILENAME)
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
 
 def init_log
