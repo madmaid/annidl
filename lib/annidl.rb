@@ -38,15 +38,17 @@ if $PROGRAM_NAME == __FILE__
     program = Nokogiri::HTML(URI.open(sanitized_url.to_s, 'User-Agent' => UA))
 
     title = program.css('#program_area .ttl_movie')[0].xpath('text()')
-
     recorded_dir = File.expand_path(ARGV[0])
     filename = Shellwords.escape(File.join(recorded_dir, title.to_s))
 
+    # chack that not downloaded yet
     next unless log['programs'] == {} || log['programs'].fetch(title, false)
     next if File.exist?(filename)
 
     result = { title => false }
     video_source = program&.css('video source')
+
+    # skip a locked content
     next result if video_source.nil? || video_source.empty?
 
 
